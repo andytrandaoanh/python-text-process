@@ -57,12 +57,17 @@ def getSencences(input_text, text_to_search):
 
 
 def searchSingle(mytext, text_to_search):
+	
+
 	my_sentences = getSencences(mytext, text_to_search )
 
-	my_data = {
-		"key-word": text_to_search,
-		"sentences": my_sentences
-		}
+	if (len(my_sentences) > 0):
+		my_data = {
+			"key-word": text_to_search,
+			"sentences": my_sentences
+			}
+	else:
+		my_data = None
 
 	return my_data
 
@@ -72,9 +77,11 @@ def searchAll(in_file_path, search_list, out_file_path):
 	mytext = readTextFile(in_file_path)	
 
 	for search_text in search_list:
-		print(search_text)
+		#print(search_text)
 		single_search = searchSingle(mytext, search_text)
-		data_out.append(single_search)
+		if(single_search):
+			print('match found: ', search_text)
+			data_out.append(single_search)
 
 
 	with open(out_file_path, 'w', encoding ="utf-8") as outfile:  
