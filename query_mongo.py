@@ -13,7 +13,7 @@ COLLECTION_NAME = 'examples'
 db = client[DB_NAME]
 examples = db[COLLECTION_NAME]
 
-eg = examples.find_one({'key-word':'abide'})
+eg = examples.find_one({'key-word':'action'})
 
 print(eg)
 
